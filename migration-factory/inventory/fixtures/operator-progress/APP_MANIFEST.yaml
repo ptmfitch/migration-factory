@@ -1,0 +1,53 @@
+schema_version: 1
+app_id: operator-progress-fixture
+repo: null
+status: in_progress
+completeness: incomplete
+scanned_seeds:
+  - src/example
+unscanned_hints:
+  - background jobs
+surfaces:
+  - surface_id: http-example
+    kind: http_listener
+    locator: src/example/routes.py
+    status: accepted
+    slice_id: example
+behaviours:
+  - behaviour_id: example-done
+    surface_id: http-example
+    name: Return an existing item
+    status: converted
+    slice_id: example
+    impl_in_modern: full
+    parity: UNVERIFIED
+    legacy_green: true
+    parity_green: false
+  - behaviour_id: example-partial
+    surface_id: http-example
+    name: Create an item
+    status: documented
+    slice_id: example
+    impl_in_modern: partial
+    parity: UNVERIFIED
+    legacy_green: true
+    parity_green: false
+    notes: Persists in memory, but durable storage and duplicate handling remain.
+  - behaviour_id: example-remaining
+    surface_id: http-example
+    name: Delete an item
+    status: documented
+    slice_id: example
+    legacy_green: true
+    parity_green: false
+  - behaviour_id: example-deferred
+    surface_id: http-example
+    name: Bulk import items
+    status: deferred
+    slice_id: later
+    impl_in_modern: none
+    legacy_green: false
+    parity_green: false
+last_updated: "2026-08-11"
+updated_by: factory-fixture
+notes: Generic fixture for the factory-owned COVERAGE generator.
