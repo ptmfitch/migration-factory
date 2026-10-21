@@ -1,6 +1,6 @@
 ---
 name: Record bind
-description: Use when Discovery (or OS Discovery) Phase A has candidates and a human must accept/reject/defer (or keep/replace/retire) — writes durable bind decisions into MANIFEST, not only chat.
+description: Use when Discovery Phase A has candidates and a human must accept/reject/defer — writes durable bind decisions into MANIFEST, not only chat.
 ---
 
 # Record bind (operator skill)
@@ -11,7 +11,7 @@ Capture **human bind** decisions so Phase B and downstream stages have a git SoT
 
 ## Context hard gate
 
-Read Field Guide (App Discovery mid-gate or OS Discovery platform bind) + `OPERATOR-RUNBOOK.md`. Refuse without Field Guide.
+Read Field Guide (App Discovery mid-gate) + `OPERATOR-RUNBOOK.md`. Refuse without Field Guide.
 
 ## When to use
 
@@ -21,14 +21,14 @@ Read Field Guide (App Discovery mid-gate or OS Discovery platform bind) + `OPERA
 
 ## Non-goals
 
-- Do not deepen behaviour/runtime cards here (`deepen-phase-b`)
+- Do not deepen behaviour cards here (`deepen-phase-b`)
 - Do not approve Test gen matrices (`matrix-gate-reply`)
 - Do not BIND Architecture packs (`architecture-pack-bind`)
 - Agent must **not** self-flip candidates to accepted
 
 ## Recipe
 
-1. Load `discovery/<SLICE_ID>/CANDIDATES.md` (or OS equivalent) + `SME_BRIEF.md`.
+1. Load `discovery/<SLICE_ID>/CANDIDATES.md` + `SME_BRIEF.md`.
 2. For each candidate, record: `accept` | `reject` | `defer` (+ one-line reason).
 3. Update / instruct update of `MANIFEST.yaml` statuses to match.
 4. List `needs-SME` / blocked items explicitly — do not drop silently.

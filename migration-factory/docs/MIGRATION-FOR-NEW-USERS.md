@@ -258,7 +258,6 @@ Until it graduates from experimental, treat the normal slice-by-slice path in th
 | --- | --- |
 | Gate → skill routing | [OPERATOR-RUNBOOK.md](./OPERATOR-RUNBOOK.md) |
 | Full stage how-to | [FIELD-GUIDE.md](./FIELD-GUIDE.md) |
-| Why two factories (app vs OS) | [TWO-FACTORIES.md](./TWO-FACTORIES.md) |
 | Operator skills | `../skills/operator/README.md` |
 | Portfolio schema | `../schemas/app-manifest.schema.md` |
 | Experimental estate discovery | `../prompts/estate-discovery-loop-v0.1.md` |

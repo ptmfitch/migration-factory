@@ -13,8 +13,7 @@ Upstream: App Discovery v0.2 artefacts under `discovery/<SLICE_ID>/`.
 Before any planning or edits, **read**:
 1. `migration-factory/docs/FIELD-GUIDE.md` (factory rhythm, stage split, glossary)
 2. Field Guide **App Test generation** section (specs + stubs only; no Gate B / green runs)
-3. `migration-factory/docs/TWO-FACTORIES.md` (confirm you are on the App factory line)
-4. `migration-factory/schemas/testgen-traceability.schema.md`
+3. `migration-factory/schemas/testgen-traceability.schema.md`
 
 **Refuse to run** if the Field Guide path is missing / unreadable. Do not invent factory rules from memory.
 

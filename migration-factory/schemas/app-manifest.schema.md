@@ -82,7 +82,7 @@ Rules:
 | Test gen / Test exec | Pointers only (`traceability` path, `legacy_green` after real REPLAY_GREEN); no inventing surfaces |
 | Conversion | Classify each in-batch behaviour's `impl_in_modern`; use `documented`/`accepted` + gap notes for `partial`, and `converted` only for `full`; add `conversion_prs`; set `parity: UNVERIFIED` or keep/set `WAIVED` if pack waiver is in force; regenerate `COVERAGE.md` |
 | Verification | `converted`→`verified` **only** on `PARITY=GREEN`; else leave `converted` + `parity: FAIL` |
-| Human | Residual gate; deferred/rejected; app `complete_bound`; linkage confirm |
+| Human | Residual gate; deferred/rejected; app `complete_bound` |
 
 Later stages **bump status + pointers**. New surfaces found mid-Conversion → `DISCOVERY_GAP` / candidate back to Discovery.
 Every Conversion or engine-rewrite change set that lands modern behaviour must update `APP_MANIFEST.yaml` and regenerate `COVERAGE.md` in that same change set.
@@ -105,7 +105,6 @@ Recommended rollup (compute; optional `counts` block may be cached but must be r
 | `testgen/` + `tests/characterization/` TRACEABILITY | Case-level SoT; APP_MANIFEST links only |
 | Architecture `PACK.yaml` | Bound target; cite `pack_id@version` on behaviours when in scope |
 | Conversion / Verification | Status bumps + PR / run pointers |
-| OS Discovery + Linkage | Fill `linkage.*` after joint SME gate — do not stuff host processes in as behaviours |
 
 ## Schema versioning
 
