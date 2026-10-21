@@ -5,6 +5,10 @@ Stage agent prompts stay under `prompts/`; Architecture PACK authoring/validatio
 
 **Always attach:** `docs/FIELD-GUIDE.md` (+ stage schemas). See [OPERATOR-RUNBOOK.md](../../docs/OPERATOR-RUNBOOK.md) for the routing table.
 
+## Before the first slice
+
+[`factory-quick-start`](../factory-quick-start/SKILL.md) is the drop-in skill for an application repository. Copy that directory to `.cursor/skills/factory-quick-start/` in the application repository. Ask the agent to bootstrap the factory. The skill vendors this pack, writes an incomplete `inventory/<APP_ID>/APP_MANIFEST.yaml`, generates `COVERAGE.md`, and stops. It does not start Discovery.
+
 ## Day-1 skills
 
 | Skill id | Use when |

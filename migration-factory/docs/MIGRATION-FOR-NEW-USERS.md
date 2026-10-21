@@ -256,6 +256,7 @@ Until it graduates from experimental, treat the normal slice-by-slice path in th
 
 | Need | Open |
 | --- | --- |
+| Stand the factory up in an application repository | `../skills/factory-quick-start/SKILL.md` |
 | Gate → skill routing | [OPERATOR-RUNBOOK.md](./OPERATOR-RUNBOOK.md) |
 | Full stage how-to | [FIELD-GUIDE.md](./FIELD-GUIDE.md) |
 | Operator skills | `../skills/operator/README.md` |

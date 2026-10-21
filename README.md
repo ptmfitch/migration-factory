@@ -11,9 +11,11 @@ migration-factory/
   docs/          Field Guide, operator runbook, new-user guide
   prompts/       Stage agent prompts (Discovery -> Verification)
   schemas/       MANIFEST / TRACEABILITY / PACK / APP_MANIFEST schemas
-  skills/        Architecture PACK skill + operator skill pack
+  skills/        Architecture PACK skill, operator skill pack, factory quick-start
   inventory/     How to stand up APP_MANIFEST + generated COVERAGE.md
 ```
+
+To bootstrap an application repository, copy `migration-factory/skills/factory-quick-start/` to that repository's `.cursor/skills/factory-quick-start/` and ask the agent to bootstrap the factory. The skill vendors this pack and stops before Discovery.
 
 Start here if you are new:
 

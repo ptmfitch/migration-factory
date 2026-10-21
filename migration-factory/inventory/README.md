@@ -14,6 +14,8 @@ inventory/<APP_ID>/
 
 ## How to start an app
 
+The [`factory-quick-start`](../skills/factory-quick-start/SKILL.md) skill performs the steps below in an application repository. It does not start Discovery.
+
 1. Create `inventory/<APP_ID>/APP_MANIFEST.yaml` following `schemas/app-manifest.schema.md` (and `schemas/app-manifest.schema.json` for CI validation).
 2. Generate `inventory/<APP_ID>/COVERAGE.md` from the manifest after each inventory update:
    ```bash

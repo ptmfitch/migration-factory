@@ -6,6 +6,8 @@ One-page map for humans running the factory. **Not** a Discovery tutorial — st
 
 **Writing rule:** All agent output and all skill output is ASD-STE100 Simplified Technical English only. See [`skills/operator/asd-ste100/SKILL.md`](../skills/operator/asd-ste100/SKILL.md). Apply this rule to generated factory and stakeholder text (Jira cards, behaviour cards, SME briefs, comments, paste blocks).
 
+**New application repository:** copy [`skills/factory-quick-start/`](../skills/factory-quick-start/SKILL.md) to the application repository at `.cursor/skills/factory-quick-start/` and run that skill. It vendors this pack and writes an incomplete inventory. It does not start Discovery.
+
 **EXPERIMENTAL estate discovery:** optional overnight inventory radar (`prompts/estate-discovery-loop-v0.1.md`). Phase A candidates only; never auto-bind; never claim completeness. Separate from the overnight Conversion conductor.
 
 **Portfolio inventory:** SoT is `inventory/<APP_ID>/APP_MANIFEST.yaml` (schema: `schemas/app-manifest.schema.json`). Generate `inventory/<APP_ID>/COVERAGE.md` with `python3 migration-factory/inventory/gen_coverage.py <APP_ID> --repo-root <REPO_ROOT>`. Operators open COVERAGE first for **Done / Partial / Remaining** modern implementation progress; seed counts and `legacy_green` are not migration progress. Never hand-edit `COVERAGE.md`.
@@ -35,6 +37,7 @@ One-page map for humans running the factory. **Not** a Discovery tutorial — st
 
 | Gate / stuck moment | Skill | Human says (one line) | Next artefact |
 | --- | --- | --- | --- |
+| New application repository; factory pack not in the workspace | `factory-quick-start` | “Bootstrap the factory for `APP_ID`.” | Vendored `migration-factory/`, incomplete APP_MANIFEST, generated COVERAGE. No Discovery. |
 | Starting a pathfinder; fuzzy “whole module” | `slice-scoping` | “Scope slice `SLICE_ID` with these seeds / out-of-scope.” | Bound slice inputs ready for Discovery Phase A |
 | Discovery Phase A done; candidates waiting | `record-bind` | “Bind: accept / reject / defer per candidate.” | Updated `MANIFEST.yaml` + bind record; unlock deepen |
 | Bind done; need Phase B deepen prompt | `deepen-phase-b` | “Deepen accepted only for `SLICE_ID`.” | Paste-ready Phase B prompt → behaviour cards PR |
@@ -56,6 +59,7 @@ One-page map for humans running the factory. **Not** a Discovery tutorial — st
 
 | Situation | Do **not** | Instead |
 | --- | --- | --- |
+| Bootstrap asked inside the factory pack repository | Create `inventory/<APP_ID>/` here | Copy `factory-quick-start` into the application repository and run it there |
 | No Field Guide / schemas in context | Launch agent anyway | Attach Field Guide + stage schemas; hard-refuse is correct |
 | Discovery candidates unbound | Deepen Phase B / invent accepts | `record-bind` first |
 | Cards `inferred` / `needs-SME` without waiver | Test gen Phase B or RECORD | SME resolve, waive explicitly, or drop from batch |
