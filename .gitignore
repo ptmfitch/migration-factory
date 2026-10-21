@@ -15,6 +15,9 @@
 .cursor/
 *.local.md
 
+# BoostGraph local index
+.boostgraph/
+
 # Python
 __pycache__/
 *.py[cod]
