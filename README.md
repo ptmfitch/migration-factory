@@ -2,7 +2,7 @@
 
 This repo holds your **migration factory** playbooks: the Field Guide, stage agent prompts, schemas, operator skills, and portfolio inventory patterns.
 
-It is the control plane for how you run application (and later OS) modernisation with Cursor. Your legacy application code lives in its own repos. This repo is the operating system for the agents and for the humans who run them.
+It is the control plane for how you run application modernisation with Cursor. Your legacy application code lives in its own repos. This repo is the operating system for the agents and for the humans who run them.
 
 ## What is in here
 

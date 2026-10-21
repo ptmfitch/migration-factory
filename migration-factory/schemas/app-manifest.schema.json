@@ -121,8 +121,7 @@
         "discovery_evidence": {
           "type": "array",
           "items": { "type": "string" }
-        },
-        "linkage": { "$ref": "#/$defs/linkage" }
+        }
       }
     },
     "behaviour": {
@@ -184,8 +183,7 @@
           "description": "true ONLY after Verification COMPARE PARITY=GREEN. Forbidden under waiver; provisional tests must leave false."
         },
         "waiver": { "type": ["string", "null"] },
-        "notes": { "type": ["string", "null"] },
-        "linkage": { "$ref": "#/$defs/linkage" }
+        "notes": { "type": ["string", "null"] }
       },
       "allOf": [
         {
@@ -259,21 +257,6 @@
           }
         }
       ]
-    },
-    "linkage": {
-      "type": "object",
-      "additionalProperties": false,
-      "properties": {
-        "host_group_id": { "type": ["string", "null"] },
-        "os_discovery_ids": {
-          "type": "array",
-          "items": { "type": "string" }
-        },
-        "status": {
-          "type": "string",
-          "enum": ["unlinked", "hypothesized", "confirmed"]
-        }
-      }
     }
   }
 }

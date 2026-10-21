@@ -11,7 +11,7 @@ Stage agent prompts stay under `prompts/`; Architecture PACK authoring/validatio
 | --- | --- |
 | [`asd-ste100`](./asd-ste100/SKILL.md) | **Day-1 / always-on writing.** Write all factory and stakeholder text in ASD-STE100 only (Jira cards, behaviour cards, SME briefs, comments, paste blocks). |
 | [`slice-scoping`](./slice-scoping/SKILL.md) | Define `SLICE_ID`, seeds, entrypoints, out-of-scope |
-| [`record-bind`](./record-bind/SKILL.md) | Capture Discovery (or OS) bind decisions into MANIFEST |
+| [`record-bind`](./record-bind/SKILL.md) | Capture Discovery bind decisions into MANIFEST |
 | [`deepen-phase-b`](./deepen-phase-b/SKILL.md) | After bind: compose Discovery Phase B deepen prompt |
 | [`matrix-gate-reply`](./matrix-gate-reply/SKILL.md) | Paste-ready Test gen matrix approve/drop/defer replies |
 | [`compose-gate-reply`](./compose-gate-reply/SKILL.md) | Generic human gate replies (golden approve, plan gate, SME sign-off) |

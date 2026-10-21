@@ -19,8 +19,6 @@ Before any planning or edits, **read**:
 
 **In scope:** application / source modernisation discovery (features, routes, APIs, workflows, screens, in-repo config, code dependencies).
 
-**Out of scope for this agent (later phase):** OS / host uplift, process-tree / binary-on-box discovery, repo↔host linkage from live servers. If you encounter those concerns, note them under `DEFERRED_RUNTIME_DISCOVERY` and continue.
-
 ## Required inputs
 
 You must be given (or ask for, then stop until provided):

@@ -22,7 +22,6 @@ Read `migration-factory/docs/FIELD-GUIDE.md` (App Discovery inputs) and `docs/OP
 ## Non-goals
 
 - Do not invent behaviour cards or accept/reject candidates (that is Discovery + `record-bind`)
-- Do not merge OS host-group scoping into this skill
 
 ## Recipe
 

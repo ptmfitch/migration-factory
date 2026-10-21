@@ -3,11 +3,9 @@
 How you run Cursor-powered modernisation factories.  
 Audience: your operators, slice SMEs, domain engineers, platform/SRE, and anyone ramping onto this approach.
 
-**Read first:** [TWO-FACTORIES.md](./TWO-FACTORIES.md) — you run **two product lines** (application modernisation and OS modernisation) on one harness, plus a thin [LINKAGE.md](./LINKAGE.md) bridge.
-
 ### Context hard gate (operators)
 
-Agent prompts and the Architecture skill **hard-refuse** to run without this Field Guide (and their stage-linked schemas/docs) in context. When you launch an agent: **attach/add** `migration-factory/docs/FIELD-GUIDE.md` plus that stage’s schemas (and TWO-FACTORIES / Architecture skill / PACK schema where linked). Do not expect agents to invent factory rules from memory.
+Agent prompts and the Architecture skill **hard-refuse** to run without this Field Guide (and their stage-linked schemas/docs) in context. When you launch an agent: **attach/add** `migration-factory/docs/FIELD-GUIDE.md` plus that stage’s schemas (and Architecture skill / PACK schema where linked). Do not expect agents to invent factory rules from memory.
 
 **New to AI / new to the factory:** start with [MIGRATION-FOR-NEW-USERS.md](./MIGRATION-FOR-NEW-USERS.md). **Operators:** use [OPERATOR-RUNBOOK.md](./OPERATOR-RUNBOOK.md) (gate → skill routing table) and the [operator skill pack](../skills/operator/README.md). For whole-app “what’s left,” see **Portfolio inventory** below and `inventory/<APP_ID>/APP_MANIFEST.yaml`. **Experimental:** overnight estate candidate hunting via `prompts/estate-discovery-loop-v0.1.md` (inventory radar; not a default stage).
 
@@ -21,14 +19,7 @@ All agent output and all skill output is ASD-STE100 Simplified Technical English
 
 A **federated factory core**: shared controls, rules, skills, evidence discipline, and MANIFEST-as-SoT patterns. Domain and platform teams still own their units of work.
 
-Two factories:
-
-| Factory | Unit of work | Primary evidence | Primary SME |
-| --- | --- | --- | --- |
-| **Application modernisation** | Slice (related features) | Source code | Domain / product |
-| **OS modernisation** | Host group / runtime footprint | EDR host dumps | Platform / SRE |
-
-Do **not** merge them into one Discovery agent.
+**Application modernisation** is the factory this repo implements: unit of work is a **slice** (related features), primary evidence is **source code**, primary SME is **domain / product**.
 
 ---
 
@@ -397,83 +388,11 @@ Keep separate from `prompts/overnight-conductor-v0.1.md` (slice conveyor). Radar
 
 ---
 
-## OS modernisation factory
-
-Pipeline (sketch; agents after Discovery still TBD):
-
-1. **OS Discovery** → as-is runtime inventory for a host group (EDR-first)  
-2. **Platform bind** → keep / replace / retire / defer / noise  
-3. **Target architecture** → human-defined image / runtime standards  
-4. **Conversion / uplift** → host or workload moves (owned by platform engineering)  
-5. **Verification** → inventory parity + sign-off  
-
-EDR dumps are the **default Discovery ingest**. You can usually already export “everything running on a box.” Prefer those offline packs over live response from Cursor unless access is explicitly scoped.
-
-Default dump families: process list, services, listeners, packages, OS version, scheduled tasks.  
-**Not default:** full memory dumps (`memdump`) — forensics, not factory inventory.
-
-### OS Discovery (v0.1) — how to run it
-
-**When:** EOL OS pressure, unknown process trees, need host-group inventory before uplift.
-
-#### Inputs
-
-| Input | Example |
-| --- | --- |
-| `HOST_GROUP_ID` | `payments-prod-win2012` |
-| `DUMP_BUNDLE` | path to EDR export pack |
-| `CAPTURE_AS_OF` | dump timestamp / ticket id |
-| `SEED_HOSTS` | optional hostname list |
-| `KNOWN_NOISE` | AV/EDR process patterns |
-
-#### Run shape
-
-**Phase A** — parse dumps → candidates → `SME_BRIEF.md` → **stop for platform bind**  
-**Phase B** — runtime cards for keep/replace/retire only  
-
-#### Do / don't
-
-| Do | Don't |
-| --- | --- |
-| Treat dumps as as-of snapshots | Assume dumps are live truth forever |
-| Record parser coverage / missing fields | Invent columns the export lacked |
-| Cluster same binary across hosts | One card per PID forever |
-| Emit weak linkage stubs only | Claim process = feature without evidence |
-| One Cloud Agent per host group | Merge into App Discovery MANIFEST |
-
-Prompt: `prompts/os-discovery-agent-v0.1.md`  
-Schema: `schemas/os-discovery-manifest.schema.md`  
-Detail: [TWO-FACTORIES.md](./TWO-FACTORIES.md)
-
----
-
-## Linkage (thin bridge)
-
-After both factories have **bound** catalogues for an overlapping pathfinder, run Linkage:
-
-- Confirmed / candidate links: feature ↔ runtime / host  
-- Orphans both ways  
-- Joint SME gate before sequencing Conversion waves  
-
-See [LINKAGE.md](./LINKAGE.md). Linkage does not re-discover code or hosts.
-
----
-
-## Pathfinder sequencing
-
-1. Pick one business **slice** and one **host group** that (likely) serves it  
-2. Run App Discovery and OS Discovery (parallel is fine)  
-3. Bind both  
-4. Run Linkage  
-5. Decide which factory’s Conversion line owns the next PR / change wave  
-
----
-
 ## Models and surfaces (current recommendation)
 
 | Step | Surface | Why |
 | --- | --- | --- |
-| Phase A taxonomy (app or OS) | Plan Mode on desktop | Human iteration on boundaries |
+| Phase A taxonomy | Plan Mode on desktop | Human iteration on boundaries |
 | Phase B deepen | Frontier / strong reasoning; Cloud Agent for large trees | Citations + durable PR output |
 | Bulk parse / file walks | Faster model OK | Save frontier for ambiguity |
 
@@ -484,15 +403,12 @@ See [LINKAGE.md](./LINKAGE.md). Linkage does not re-discover code or hosts.
 | Term | Meaning |
 | --- | --- |
 | Slice | Bounded set of related app features to migrate together |
-| Host group | Bounded set of hosts / runtime footprint for OS Discovery |
 | Behaviour card | As-is description of what code does, with evidence |
-| Runtime card | As-is description of what runs on hosts, with dump evidence |
 | MANIFEST | Machine-readable catalogue (source of truth) |
-| Bind | Human accept/reject (app) or keep/replace/retire (OS) of candidates |
+| Bind | Human accept/reject/defer of Discovery candidates |
 | Characterization | Tests that pin current behaviour, not desired correctness |
 | Factory core | Shared skills, rules, agents, controls |
-| Linkage | Thin bridge between app and OS catalogues |
-| Pathfinder | First slice + host group that configures the lines |
+| Pathfinder | First slice that configures the line |
 | Characterization case | Spec that pins observed behaviour; expects usually TO_BE_RECORDED until execution |
 | TRACEABILITY | behaviour_id → case_id → files map (Test gen SoT companion) |
 | Test execution | Stage that runs harness on legacy and freezes goldens |
@@ -500,7 +416,6 @@ See [LINKAGE.md](./LINKAGE.md). Linkage does not re-discover code or hosts.
 | Architecture skill | Recipe to produce/validate PACK; not a standing agent |
 | Conversion | Implements documented features under BOUND PACK; does not design |
 | Verification | Modern COMPARE vs same goldens; sets PARITY; narrative + evidence |
-| EDR dump pack | Offline host inventory export used as OS Discovery input |
 | APP_MANIFEST | App-level portfolio inventory and source of truth for modern implementation progress; incomplete until human residual gate |
 | COVERAGE.md | Generated operator glance: Done / Partial / Remaining first, then inventory and characterization counts — never hand-edit |
 | Operator runbook | One-page gate → skill routing table for humans running the factory |
@@ -515,9 +430,6 @@ See [LINKAGE.md](./LINKAGE.md). Linkage does not re-discover code or hosts.
 - Estate discovery loop promotion criteria (when to graduate from EXPERIMENTAL)  
 - Whether overnight conductor stays EXPERIMENTAL alongside it  
 - APP_MANIFEST ↔ Discovery writer contract (when Discovery must upsert surfaces)  
-- Exact FEATURE_ID / RUNTIME_ID schemes and dedupe rules  
+- Exact FEATURE_ID schemes and dedupe rules  
 - Example BOUND packs / templates under architecture/_templates/  
-- Concrete EDR export recipe you will standardise (column set)  
-- OS Conversion agent scope (image bake vs lift-and-shift vs replatform) — later  
-- Who owns confirmed linkage records (platform vs domain vs joint CAB)  
 - Whether contract tests (OAS) sit beside characterization or inside the same agent  
